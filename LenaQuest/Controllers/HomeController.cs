@@ -14,19 +14,7 @@ namespace LenaQuestQuest.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IHostingEnvironment _hostingEnv;
-
-        public HomeController(IHostingEnvironment hostingEnv)
-        {
-            _hostingEnv = hostingEnv;
-        }
-
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
