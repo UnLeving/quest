@@ -1,54 +1,30 @@
-﻿@*@model IEnumerable<LenaQuest.Models.UserProfile>
+﻿@model LenaQuest.Models.UserProfile
 
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SureName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuestExpiriencs)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SureName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestExpiriencs)
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@
+<div class="form-group">
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" class="form-control" />
+</div>
+<div class="form-group">
+    <label asp-for="SecondName"></label>
+    <input asp-for="SecondName" class="form-control" />
+</div>
+<div class="form-group">
+    <label asp-for="Age"></label>
+    <input asp-for="Age" class="form-control" />
+</div>
+<div class="form-group">
+    <label asp-for="PhoneNumber"></label>
+    <input asp-for="PhoneNumber" class="form-control" type="number" />
+    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="City"></label>
+    <input asp-for="City" class="form-control" />
+</div>
+<div class="form-group">
+    <label asp-for="QuestExpiriencs"></label>
+    <input asp-for="QuestExpiriencs" class="form-control" type="number" />
+</div>

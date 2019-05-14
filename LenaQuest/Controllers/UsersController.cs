@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using LenaQuest.Models;
-using Microsoft.AspNetCore.Identity;
-using LenaQuestQuest.Data;
+using System.Threading.Tasks;
+using System.Linq;
+using LenaQuest.Areas.Identity.Pages.Account.Manage;
 
 namespace LenaQuest.Controllers
 {
@@ -20,11 +15,11 @@ namespace LenaQuest.Controllers
             _context = context;
         }
 
-        //// GET: Users
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Users.ToListAsync());
-        //}
+        // GET: Users
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         //// GET: Users/Details/5
         //public async Task<IActionResult> Details(int? id)
@@ -44,27 +39,27 @@ namespace LenaQuest.Controllers
         //    return View(user);
         //}
 
-        //// GET: Users/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: Users/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-        //// POST: Users/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Age,Name,SureName,City,QuestExpiriencs")] User user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(user);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(user);
-        //}
+        // POST: Users/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(UserProfile user)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(user);
+        }
 
         //// GET: Users/Edit/5
         //public async Task<IActionResult> Edit(int? id)

@@ -9,11 +9,11 @@ namespace LenaQuest.Models
     {
         public int Id { get; set; }
         public int Age { get; set; }
-        public string Name { get; set; }
-        public string SureName { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
         public string City { get; set; }
         public int QuestExpiriencs { get; set; }
-
-        public virtual string Email { get; set; }
     }
 }
