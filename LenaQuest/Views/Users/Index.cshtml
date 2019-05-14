@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LenaQuest.Models.User>
+﻿@*@model IEnumerable<LenaQuest.Models.UserProfile>
 
 @{
     ViewData["Title"] = "Index";
@@ -48,12 +48,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.QuestExpiriencs)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
         </tr>
 }
     </tbody>
-</table>
+</table>*@

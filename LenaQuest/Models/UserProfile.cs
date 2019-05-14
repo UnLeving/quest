@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LenaQuest.Models
 {
-    public class User
+    public class UserProfile
     {
         public int Id { get; set; }
         public int Age { get; set; }
@@ -13,5 +13,7 @@ namespace LenaQuest.Models
         public string SureName { get; set; }
         public string City { get; set; }
         public int QuestExpiriencs { get; set; }
+
+        public virtual string Email { get; set; }
     }
 }

@@ -15,7 +15,7 @@
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Input.FirstName"></label>
                 <input asp-for="Input.FirstName" class="form-control" />
             </div>
@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label asp-for="Input.Age"></label>
                 <input asp-for="Input.Age" class="form-control"/>
-            </div>
+            </div>*@
             @*<div class="form-group">
                 <label asp-for="Input.Email"></label>
 
@@ -42,14 +42,14 @@
                 <input asp-for="Input.PhoneNumber" class="form-control" type="number" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Input.City"></label>
                 <input asp-for="Input.City" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Input.QuestExpiriencs"></label>
                 <input asp-for="Input.QuestExpiriencs" class="form-control" type="number" />
-            </div>
+            </div>*@
 
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>

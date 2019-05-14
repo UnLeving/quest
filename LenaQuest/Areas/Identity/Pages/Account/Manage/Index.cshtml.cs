@@ -15,17 +15,14 @@ namespace LenaQuest.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        //private readonly IEmailSender _emailSender;
 
-        public IndexModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager/*, IEmailSender emailSender*/)
+        public IndexModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            //_emailSender = emailSender;
         }
         [Display(Name = "Login")]
         public string Username { get; set; }
-        //public bool IsEmailConfirmed { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -35,28 +32,9 @@ namespace LenaQuest.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            public int Id { get; set; }
-            [Required]
-            [Display(Name = "First name")]
-            public string FirstName { get; set; }
-            [Required]
-            [Display(Name = "Last name")]
-            public string LastName { get; set; }
-            [Required]
-            [Range(25, 60)]
-            public int Age { get; set; }
-            //[Required]
-            //[EmailAddress]
-            //public string Email { get; set; }
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-            [Required]
-            public string City { get; set; }
-            [Required]
-            [Display(Name = "QuestRoom amount you were in")]
-            [Range(0, int.MaxValue)]
-            public int QuestExpiriencs { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -68,6 +46,7 @@ namespace LenaQuest.Areas.Identity.Pages.Account.Manage
             }
 
             var userName = await _userManager.GetUserNameAsync(user);
+            var firstName = await _userManager.GetUserNameAsync(user);
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
@@ -75,7 +54,6 @@ namespace LenaQuest.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                //Email = email,
                 PhoneNumber = phoneNumber
             };
 
@@ -96,17 +74,6 @@ namespace LenaQuest.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
-            //var email = await _userManager.GetEmailAsync(user);
-            //if (Input.Email != email)
-            //{
-            //    var setEmailResult = await _userManager.SetEmailAsync(user, Input.Email);
-            //    if (!setEmailResult.Succeeded)
-            //    {
-            //        var userId = await _userManager.GetUserIdAsync(user);
-            //        throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
-            //    }
-            //}
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
