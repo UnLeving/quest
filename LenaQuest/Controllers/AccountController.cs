@@ -29,7 +29,13 @@ namespace LenaQuest.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, Age = model.Age };
+                User user = new User {
+                    Email = model.Email,
+                    UserName = model.Email,
+                    FirstName = model.FirstName,
+                    SecondName = model.SecondName,
+                    City = model.City,
+                    Age = model.Age };
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
