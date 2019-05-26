@@ -11,5 +11,6 @@ namespace LenaQuest.Models
         public string PasswordConfirm { get; set; }
         public string City { get; set; }
         public int QuestExpiriencs { get; set; }
+        public string QuestDetails { get; set; }
     }
 }

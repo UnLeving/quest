@@ -23,6 +23,26 @@ namespace LenaQuest.Controllers
 
         public IActionResult Create() => View();
 
+        public async Task<IActionResult> Profile(string email)
+        {
+            User user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            ProfileViewModel model = new ProfileViewModel
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                SecondName = user.SecondName,
+                Age = user.Age,
+                City = user.City,
+                QuestExpiriencs = user.QuestExpiriencs,
+                QuestDetails = user.QuestDetails ?? "waiting for validation"
+            };
+            return View(model);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {

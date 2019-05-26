@@ -60,6 +60,8 @@ namespace LenaQuest.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("QuestDetails");
+
                     b.Property<int>("QuestExpiriencs");
 
                     b.Property<string>("SecondName");
@@ -82,6 +84,31 @@ namespace LenaQuest.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("LenaQuest.ViewModels.ProfileViewModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("QuestDetails");
+
+                    b.Property<int>("QuestExpiriencs");
+
+                    b.Property<string>("SecondName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProfileViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

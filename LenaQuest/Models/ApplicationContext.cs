@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LenaQuest.ViewModels;
 
 namespace LenaQuest.Models
 {
@@ -14,5 +15,6 @@ namespace LenaQuest.Models
         {
             Database.EnsureCreated();
         }
+        public DbSet<LenaQuest.ViewModels.ProfileViewModel> ProfileViewModel { get; set; }
     }
 }
