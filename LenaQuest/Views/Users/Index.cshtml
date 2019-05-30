@@ -1,10 +1,12 @@
-﻿@model IEnumerable<LenaQuest.Models.User>
+﻿@*<partial name="_SortOptions" />*@
+
+@model IEnumerable<LenaQuest.Models.User>
 
 @{
     ViewBag.Title = "Список пользователей";
 }
 
-<partial name="_SortOptions" />
+    <a asp-action="Sort" asp-controller="Users" method="get" class="btn btn-primary">Sort options</a>
 
 <table class="table">
     <tr>

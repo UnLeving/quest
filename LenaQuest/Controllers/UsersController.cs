@@ -81,6 +81,15 @@ namespace LenaQuest.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Sort() => View();
+
+        [HttpPost]
+        public IActionResult Sort(SortViewModel model)
+        {
+            return View(model);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
