@@ -15,6 +15,5 @@ namespace LenaQuest.Models
         {
             Database.EnsureCreated();
         }
-        public DbSet<LenaQuest.ViewModels.ProfileViewModel> ProfileViewModel { get; set; }
-    }
+    }        
 }

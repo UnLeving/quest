@@ -13,7 +13,7 @@ namespace LenaQuest.ViewModels
         public string SecondName { get; set; }
         public int Age { get; set; }
         public string City { get; set; }
-        public int QuestExpiriencs { get; set; }
+        public int QuestExpirience { get; set; }
         public string QuestDetails { get; set; }
     }
 }

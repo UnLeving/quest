@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LenaQuest.Migrations
 {
-    public partial class init : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,34 +44,13 @@ namespace LenaQuest.Migrations
                     Age = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     SecondName = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    PasswordConfirm = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
-                    QuestExpiriencs = table.Column<int>(nullable: false),
+                    QuestExpirience = table.Column<int>(nullable: false),
                     QuestDetails = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProfileViewModel",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    SecondName = table.Column<string>(nullable: true),
-                    Age = table.Column<int>(nullable: false),
-                    City = table.Column<string>(nullable: true),
-                    QuestExpiriencs = table.Column<int>(nullable: false),
-                    QuestDetails = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProfileViewModel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -236,9 +215,6 @@ namespace LenaQuest.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "ProfileViewModel");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

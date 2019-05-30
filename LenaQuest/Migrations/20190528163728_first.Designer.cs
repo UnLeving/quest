@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LenaQuest.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190526224322_init")]
-    partial class init
+    [Migration("20190528163728_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,10 +52,6 @@ namespace LenaQuest.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
-                    b.Property<string>("Password");
-
-                    b.Property<string>("PasswordConfirm");
-
                     b.Property<string>("PasswordHash");
 
                     b.Property<string>("PhoneNumber");
@@ -64,7 +60,7 @@ namespace LenaQuest.Migrations
 
                     b.Property<string>("QuestDetails");
 
-                    b.Property<int>("QuestExpiriencs");
+                    b.Property<int>("QuestExpirience");
 
                     b.Property<string>("SecondName");
 
@@ -86,31 +82,6 @@ namespace LenaQuest.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("LenaQuest.ViewModels.ProfileViewModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Age");
-
-                    b.Property<string>("City");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("QuestDetails");
-
-                    b.Property<int>("QuestExpiriencs");
-
-                    b.Property<string>("SecondName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProfileViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
