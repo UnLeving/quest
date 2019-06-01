@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LenaQuest.Models;
@@ -9,18 +8,35 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LenaQuest.Controllers
 {
+    /// <summary>
+    /// контроллер отвечающий за создание и управление административными ролями пользователей
+    /// </summary>
     public class RolesController : Controller
     {
-        RoleManager<IdentityRole> _roleManager;
-        UserManager<User> _userManager;
+        // автосвойство возвращающее апи по управлению административными ролями
+        private RoleManager<IdentityRole> _roleManager { get; }
+        // автосвойство возвращающее апи по управлению пользователями
+        private UserManager<User> _userManager { get; }
         public RolesController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
         }
-        public IActionResult Index() => View(_roleManager.Roles.ToList());
 
-        public IActionResult Create() => View();
+        // возвращает список ролей пользователей
+        public IActionResult Index()
+        {
+            return View(_roleManager.Roles.ToList());
+        }
+
+        // ГЕТ запрос возвращающий форму для создания роли
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // ПОСТ запрос обрабатывающий создание роли, где name - имя роли
         [HttpPost]
         public async Task<IActionResult> Create(string name)
         {
@@ -42,6 +58,7 @@ namespace LenaQuest.Controllers
             return View(name);
         }
 
+        // ПОСТ запрос обрабатывающий удаление роли
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
@@ -53,8 +70,15 @@ namespace LenaQuest.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult UserList() => View(_userManager.Users.ToList());
+        // ГЕТ возвращает список ролей
+        [HttpGet]
+        public IActionResult UserList()
+        {
+            return View(_userManager.Users.ToList());
+        }
 
+        // ПОСТ запрос обрабатывающий изменение роли пользователя
+        [HttpPost]
         public async Task<IActionResult> Edit(string userId)
         {
             // получаем пользователя
@@ -76,6 +100,8 @@ namespace LenaQuest.Controllers
 
             return NotFound();
         }
+
+        // ПОСТ запрос обрабатывающий изменение роли пользователя
         [HttpPost]
         public async Task<IActionResult> Edit(string userId, List<string> roles)
         {

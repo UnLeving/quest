@@ -8,19 +8,30 @@ using LenaQuest.ViewModels;
 
 namespace LenaQuest.Controllers
 {
+    /// <summary>
+    /// контроллер отвечающий за управление пользователями
+    /// </summary>
     public class UsersController : Controller
     {
-        UserManager<User> _userManager;
+        // автосвойство возвращающее апи по управлению пользователями
+        private UserManager<User> _userManager { get; }
 
         public UsersController(UserManager<User> userManager)
         {
             _userManager = userManager;
         }
+
+        // ГЕТ запрос возвращающий список пользователей
+        // атрибут Authorize отвечает за получение доступа к списку только конкретной роли
         [Authorize(Roles = "admin")]
-        public IActionResult Index() => View(_userManager.Users.ToList());
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View(_userManager.Users.ToList());
+        }
 
-        public IActionResult Create() => View();
-
+        // ГЕТ запрос возвращающий информацию о пользователе
+        [HttpGet]
         public async Task<IActionResult> Profile(string email)
         {
             User user = await _userManager.FindByEmailAsync(email);
@@ -28,6 +39,7 @@ namespace LenaQuest.Controllers
             {
                 return NotFound();
             }
+
             ProfileViewModel model = new ProfileViewModel
             {
                 Email = user.Email,
@@ -41,6 +53,8 @@ namespace LenaQuest.Controllers
             return View(model);
         }
 
+        // ПОСТ запрос обрабатывающий редактирование пользовательских данных
+        [HttpPost]
         public async Task<IActionResult> Edit(string email)
         {
             User user = await _userManager.FindByEmailAsync(email);
@@ -52,6 +66,7 @@ namespace LenaQuest.Controllers
             return View(model);
         }
 
+        // ПОСТ запрос обрабатывающий редактирование пользовательских данных
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel model)
         {
@@ -81,15 +96,20 @@ namespace LenaQuest.Controllers
             return View(model);
         }
 
+        // ГЕТ запрос возвращающий форму для сортировки пользователей
         [HttpGet]
-        public IActionResult Sort() => View();
-
+        public IActionResult Sort()
+        {
+            return View();
+        }
+        // TODO: finish
         [HttpPost]
         public IActionResult Sort(SortViewModel model)
         {
             return View(model);
         }
 
+        // ПОСТ запрос обрабатывающий удаление пользователя
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
@@ -101,45 +121,5 @@ namespace LenaQuest.Controllers
             return RedirectToAction("Index");
         }
 
-        //public async Task<IActionResult> ChangePassword(string id)
-        //{
-        //    User user = await _userManager.FindByIdAsync(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ChangePasswordViewModel model = new ChangePasswordViewModel { Id = user.Id, Email = user.Email };
-        //    return View(model);
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        User user = await _userManager.FindByIdAsync(model.Id);
-        //        if (user != null)
-        //        {
-        //            IdentityResult result =
-        //                await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-        //            if (result.Succeeded)
-        //            {
-        //                return RedirectToAction("Index");
-        //            }
-        //            else
-        //            {
-        //                foreach (var error in result.Errors)
-        //                {
-        //                    ModelState.AddModelError(string.Empty, error.Description);
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError(string.Empty, "Пользователь не найден");
-        //        }
-        //    }
-        //    return View(model);
-        //}
     }
 }

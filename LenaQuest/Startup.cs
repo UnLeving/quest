@@ -46,7 +46,6 @@ namespace LenaQuestQuest
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
 

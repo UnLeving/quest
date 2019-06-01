@@ -1,36 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using LenaQuest.Models;
-using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using Microsoft.DotNet.PlatformAbstractions;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace LenaQuestQuest.Controllers
 {
+    /// <summary>
+    /// контроллер отвечающий за домашнюю страницу
+    /// </summary>
     public class HomeController : Controller
     {
+        // возвращает главную страницу сайта
         public IActionResult Index()
         {
             return View();
         }
 
+        // возвращает частичное представление истории компании
         public IActionResult History()
         {
-            return View();
+            return PartialView();
         }
 
+        // возвращает частичное представление информации о компании
         public IActionResult AboutUs()
         {
-            return View();
+            return PartialView();
         }
 
+        // возвращает частичное представление галереи
         public ActionResult Gallery()
         {
-            return View();
+            return PartialView();
         }
     }
 }
