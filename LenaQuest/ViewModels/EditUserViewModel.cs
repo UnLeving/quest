@@ -7,8 +7,11 @@ namespace LenaQuest.ViewModels
 {
     public class EditUserViewModel
     {
-        public string Id { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
+        public string City { get; set; }
+        public int QuestExpirience { get; set; }
     }
 }

@@ -5,7 +5,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using LenaQuest.ViewModels;
-using System.Collections.Generic;
 
 namespace LenaQuest.Controllers
 {
@@ -34,7 +33,7 @@ namespace LenaQuest.Controllers
                 {
                     Email = user.Email,
                     Age = user.Age,
-                    Name = user.FirstName + " " + user.SecondName?? "",
+                    Name = user.FirstName + " " + user.SecondName ?? "",
                     City = user.City,
                     QuestExpirience = user.QuestExpirience,
                     isSelected = user.QuestDetails == null ? false : true
@@ -75,8 +74,8 @@ namespace LenaQuest.Controllers
             return View(model);
         }
 
-        // ПОСТ запрос обрабатывающий редактирование пользовательских данных
-        [HttpPost]
+        // ГЕТ запрос обрабатывающий редактирование пользовательских данных
+        [HttpGet]
         public async Task<IActionResult> Edit(string email)
         {
             User user = await _userManager.FindByEmailAsync(email);
@@ -84,7 +83,15 @@ namespace LenaQuest.Controllers
             {
                 return NotFound();
             }
-            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, Age = user.Age };
+            EditUserViewModel model = new EditUserViewModel
+            {
+                Email = user.Email,
+                Age = user.Age,
+                FirstName = user.FirstName,
+                SecondName = user.SecondName,
+                City = user.City,
+                QuestExpirience = user.QuestExpirience
+            };
             return View(model);
         }
 
@@ -94,12 +101,16 @@ namespace LenaQuest.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                User user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null)
                 {
                     user.Email = model.Email;
                     user.UserName = model.Email;
                     user.Age = model.Age;
+                    user.FirstName = model.FirstName;
+                    user.SecondName = model.SecondName;
+                    user.City = model.City;
+                    user.QuestExpirience = model.QuestExpirience;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
@@ -136,7 +147,7 @@ namespace LenaQuest.Controllers
                 {
                     return NotFound();
                 }
-                user.QuestDetails = "Congrats! You're winner!";
+                user.QuestDetails = "Congrats! You're the winner!";
                 await _userManager.UpdateAsync(user);
             }
             return Ok();

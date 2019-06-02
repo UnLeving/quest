@@ -3,20 +3,32 @@
 @{
     ViewBag.Title = "Редактирование пользователя";
 }
-<form asp-action="Edit" asp-controller="Users">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <input type="hidden" asp-for="Id" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Email" class="control-label">Email</label>
-        <input type="text" asp-for="Email" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Age" class="control-label">Год рождения</label>
-        <input type="number" asp-for="Age" class="form-control" />
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Сохранить" class="btn btn-default" />
-    </div>
-</form>
+    <form asp-action="Edit" asp-controller="Users">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <input type="hidden" asp-for="Email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Age" class="control-label">Age</label>
+            <input type="number" asp-for="Age" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label">FirstName</label>
+            <input type="text" asp-for="FirstName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="SecondName" class="control-label">SecondName</label>
+            <input type="text" asp-for="SecondName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="City" class="control-label">City</label>
+            <input type="text" asp-for="City" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="QuestExpirience" class="control-label">QuestExpirience</label>
+            <input type="number" asp-for="QuestExpirience" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Сохранить" class="btn btn-default" />
+        </div>
+    </form>
