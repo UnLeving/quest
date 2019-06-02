@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LenaQuest.Models.User>
+@{
+    ViewBag.Title = "Список пользователей";
+}
+
+<a asp-action="Sort" asp-controller="Users" method="get" class="btn btn-primary">Sort options</a>
+
+<form asp-action="SendRequest" method="post">
+    <table class="table">
+        <tr>
+            <th>Email</th>
+            <th>FirstName</th>
+            <th>SecondName</th>
+            <th>Age</th>
+            <th>City</th>
+            <th>QuestExpirience</th>
+            <th>Choose user</th>
+            @*<th>Remove user</th>*@
+        </tr>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.FirstName</td>
+                <td>@user.SecondName</td>
+                <td>@user.Age</td>
+                <td>@user.City</td>
+                <td>@user.QuestExpirience</td>
+                <td>
+                    <input type="checkbox" name="isChecked" @(user.QuestDetails != null ? "checked=\"checked\"" : "") />
+                </td>
+                @*<td>
+                        <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Удалить
+                            </button>
+                        </form>
+                    </td>*@
+            </tr>
+        }
+    </table>
+    <button type="submit" class="btn btn-sm btn-danger">
+        Send details
+    </button>
+</form>

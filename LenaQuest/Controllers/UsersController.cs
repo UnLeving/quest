@@ -24,12 +24,33 @@ namespace LenaQuest.Controllers
 
         // ГЕТ запрос возвращающий список пользователей
         // атрибут Authorize отвечает за получение доступа к списку только конкретной роли
-        [Authorize(Roles = "admin")]
-        [HttpGet]
+        //[Authorize(Roles = "admin")]
+        //[HttpGet]
+        //public IActionResult Index()
+        //{
+        //    return View(_userManager.Users.ToList());
+        //}
+
         public IActionResult Index()
         {
-            return View(_userManager.Users.ToList());
+            var model = new UserSelectionViewModel();
+            foreach (var user in _userManager.Users)
+            {
+                var editorViewModel = new SelectedUserEditorViewModel()
+                {
+                    Email = user.Email,
+                    Age = user.Age,
+                    FirstName = user.FirstName,
+                    SecondName = user.SecondName,
+                    City = user.City,
+                    QuestExpirience = user.QuestExpirience,
+                    isSelected = user.QuestDetails == null ? false : true
+                };
+                model.Users.Add(editorViewModel);
+            }
+            return View(model);
         }
+
         [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Index(SortViewModel cty)
@@ -109,6 +130,23 @@ namespace LenaQuest.Controllers
         public IActionResult Sort()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendRequest(UserSelectionViewModel model)
+        {
+            var selectedEmails = model.GetSelectedUsersEmails();
+            foreach (var email in selectedEmails)
+            {
+                User user = await _userManager.FindByEmailAsync(email);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                user.QuestDetails = "Congrats! You're winner!";
+                await _userManager.UpdateAsync(user);
+            }
+            return Ok();
         }
 
         // ПОСТ запрос обрабатывающий удаление пользователя
