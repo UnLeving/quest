@@ -77,8 +77,8 @@ namespace LenaQuest.Controllers
             return View(_userManager.Users.ToList());
         }
 
-        // ПОСТ запрос обрабатывающий изменение роли пользователя
-        [HttpPost]
+        // ГЕТ запрос обрабатывающий изменение роли пользователя
+        [HttpGet]
         public async Task<IActionResult> Edit(string userId)
         {
             // получаем пользователя

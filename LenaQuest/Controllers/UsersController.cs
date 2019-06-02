@@ -30,7 +30,7 @@ namespace LenaQuest.Controllers
         {
             return View(_userManager.Users.ToList());
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Index(SortViewModel cty)
         {
@@ -122,6 +122,5 @@ namespace LenaQuest.Controllers
             }
             return RedirectToAction("Index");
         }
-
     }
 }
