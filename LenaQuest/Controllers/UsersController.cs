@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using LenaQuest.ViewModels;
+using System.Collections.Generic;
 
 namespace LenaQuest.Controllers
 {
@@ -15,7 +16,7 @@ namespace LenaQuest.Controllers
     {
         // автосвойство возвращающее апи по управлению пользователями
         private UserManager<User> _userManager { get; }
-
+        IEnumerable<User> usrs;
         public UsersController(UserManager<User> userManager)
         {
             _userManager = userManager;
@@ -28,6 +29,13 @@ namespace LenaQuest.Controllers
         public IActionResult Index()
         {
             return View(_userManager.Users.ToList());
+        }
+
+        [HttpPost]
+        public IActionResult Index(SortViewModel cty)
+        {
+            var c = _userManager.Users.Where(m => m.City == cty.City);
+            return View(c);
         }
 
         // ГЕТ запрос возвращающий информацию о пользователе
@@ -101,12 +109,6 @@ namespace LenaQuest.Controllers
         public IActionResult Sort()
         {
             return View();
-        }
-        // TODO: finish
-        [HttpPost]
-        public IActionResult Sort(SortViewModel model)
-        {
-            return View(model);
         }
 
         // ПОСТ запрос обрабатывающий удаление пользователя

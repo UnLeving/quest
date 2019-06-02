@@ -1,12 +1,19 @@
 ﻿@*<partial name="_SortOptions" />*@
 
 @model IEnumerable<LenaQuest.Models.User>
-
 @{
     ViewBag.Title = "Список пользователей";
 }
 
-    <a asp-action="Sort" asp-controller="Users" method="get" class="btn btn-primary">Sort options</a>
+<a asp-action="Sort" asp-controller="Users" method="get" class="btn btn-primary">Sort options</a>
+@*<form asp-action="Index" method="post">
+    <div class="form-group form-inline">
+        <input name="City" class="form-control" type="text" placeholder="City" />
+    </div>
+    <div class="form-group form-inline">
+        <button type="submit" class="btn btn-primary">Sort</button>
+    </div>
+</form>*@
 
 <table class="table">
     <tr>
