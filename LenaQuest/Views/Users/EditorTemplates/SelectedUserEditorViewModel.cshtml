@@ -1,13 +1,7 @@
 ﻿@model LenaQuest.ViewModels.SelectedUserEditorViewModel
     <tr>
         <td>
-            @Html.HiddenFor(model => model.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.SecondName)
+            @Html.DisplayFor(model => model.Name)
         </td>
         <td>
             @Html.DisplayFor(model => model.Age)
@@ -18,7 +12,10 @@
         <td>
             @Html.DisplayFor(model => model.QuestExpirience)
         </td>
-        <td style="text-align:center">
+        <td>
             @Html.CheckBoxFor(model => model.isSelected)
+        </td>
+        <td>
+            @Html.HiddenFor(model => model.Email)
         </td>
     </tr>

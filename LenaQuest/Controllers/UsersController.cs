@@ -16,7 +16,6 @@ namespace LenaQuest.Controllers
     {
         // автосвойство возвращающее апи по управлению пользователями
         private UserManager<User> _userManager { get; }
-        IEnumerable<User> usrs;
         public UsersController(UserManager<User> userManager)
         {
             _userManager = userManager;
@@ -24,13 +23,8 @@ namespace LenaQuest.Controllers
 
         // ГЕТ запрос возвращающий список пользователей
         // атрибут Authorize отвечает за получение доступа к списку только конкретной роли
-        //[Authorize(Roles = "admin")]
-        //[HttpGet]
-        //public IActionResult Index()
-        //{
-        //    return View(_userManager.Users.ToList());
-        //}
-
+        [Authorize(Roles = "admin")]
+        [HttpGet]
         public IActionResult Index()
         {
             var model = new UserSelectionViewModel();
@@ -40,8 +34,7 @@ namespace LenaQuest.Controllers
                 {
                     Email = user.Email,
                     Age = user.Age,
-                    FirstName = user.FirstName,
-                    SecondName = user.SecondName,
+                    Name = user.FirstName + " " + user.SecondName?? "",
                     City = user.City,
                     QuestExpirience = user.QuestExpirience,
                     isSelected = user.QuestDetails == null ? false : true

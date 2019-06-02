@@ -1,23 +1,20 @@
 ﻿@model LenaQuest.ViewModels.UserSelectionViewModel
 
-<h2>Users</h2>
+<h2>Please select users</h2>
 
 <form asp-action="SendRequest" method="post">
-    <table class="table">
+    <table class="table text-center" >
         <tr>
-            <th>Email</th>
-            <th>FirstName</th>
-            <th>SecondName</th>
+            <th>Name</th>
             <th>Age</th>
             <th>City</th>
             <th>QuestExpirience</th>
             <th>Choose user</th>
-            @*<th>Remove user</th>*@
         </tr>
 
         @Html.EditorFor(model => model.Users)
     </table>
-    <button type="submit" class="btn btn-sm btn-danger">
+    <button type="submit" class="btn btn-sm btn-success">
         Send details
     </button>
 </form>
