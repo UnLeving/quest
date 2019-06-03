@@ -27,9 +27,15 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row">
                     <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
-                    <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">Users</a>
-                    <a class="nav-link text-dark" asp-controller="Roles" asp-action="Index">Roles</a>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" >
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">Users</a>
+                            <a class="nav-link text-dark" asp-controller="Roles" asp-action="Index">Roles</a>
+                        }
+                    }
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <partial name="_LoginPartial" />
                     </div>
                 </div>

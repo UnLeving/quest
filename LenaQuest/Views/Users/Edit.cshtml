@@ -28,6 +28,18 @@
             <label asp-for="QuestExpirience" class="control-label">QuestExpirience</label>
             <input type="number" asp-for="QuestExpirience" class="form-control" />
         </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (User.IsInRole("admin"))
+            {
+                <div class="form-group">
+                    <label asp-for="QuestDetails" class="control-label">QuestDetails</label>
+                    <input type="text" asp-for="QuestDetails" class="form-control" />
+                </div>
+            }
+        }
+
         <div class="form-group">
             <input type="submit" value="Сохранить" class="btn btn-default" />
         </div>

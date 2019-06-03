@@ -15,9 +15,13 @@ namespace LenaQuest.Controllers
     {
         // автосвойство возвращающее апи по управлению пользователями
         private UserManager<User> _userManager { get; }
-        public UsersController(UserManager<User> userManager)
+        // автосвойство возвращающее апи по управлению административными ролями
+        private RoleManager<IdentityRole> _roleManager { get; }
+
+        public UsersController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // ГЕТ запрос возвращающий список пользователей
@@ -56,6 +60,7 @@ namespace LenaQuest.Controllers
         public async Task<IActionResult> Profile(string email)
         {
             User user = await _userManager.FindByEmailAsync(email);
+
             if (user == null)
             {
                 return NotFound();
@@ -83,14 +88,18 @@ namespace LenaQuest.Controllers
             {
                 return NotFound();
             }
-            EditUserViewModel model = new EditUserViewModel
+
+            var role = _userManager.GetRolesAsync(user).Result.FirstOrDefault();
+
+            var model = new EditUserViewModel
             {
                 Email = user.Email,
                 Age = user.Age,
                 FirstName = user.FirstName,
                 SecondName = user.SecondName,
                 City = user.City,
-                QuestExpirience = user.QuestExpirience
+                QuestExpirience = user.QuestExpirience,
+                QuestDetails = role.Equals("admin") ? user.QuestDetails : null
             };
             return View(model);
         }
@@ -104,6 +113,8 @@ namespace LenaQuest.Controllers
                 User user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null)
                 {
+                    var role = _userManager.GetRolesAsync(user).Result.FirstOrDefault();
+
                     user.Email = model.Email;
                     user.UserName = model.Email;
                     user.Age = model.Age;
@@ -111,6 +122,8 @@ namespace LenaQuest.Controllers
                     user.SecondName = model.SecondName;
                     user.City = model.City;
                     user.QuestExpirience = model.QuestExpirience;
+                    if (role.Equals("admin"))
+                        user.QuestDetails = model.QuestDetails;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LenaQuest.Models;
 using LenaQuest.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace LenaQuest.Controllers
     /// <summary>
     /// контроллер отвечающий за создание и управление административными ролями пользователей
     /// </summary>
+    [Authorize(Roles = "admin")]
     public class RolesController : Controller
     {
         // автосвойство возвращающее апи по управлению административными ролями
