@@ -11,7 +11,7 @@
         </li>
 
         <li class="nav-item">
-            <form class="form-inline" asp-controller="Account" asp-action="LogOff" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <form class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
             </form>
         </li>
@@ -19,24 +19,10 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+            <a class="nav-link text-dark" asp-action="" onclick="RenderActions('/Account/Register/')" data-target="#modalCreate" data-toggle="modal">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+            <a class="nav-link text-dark" asp-action="" onclick="RenderActions('/Account/Login/')" data-target="#modalCreate" data-toggle="modal">Login</a>
         </li>
-        <li class="nav-item">
-            <button id="aClicked">Login</button>
-        </li>
-
-
     }
 </ul>
-
-<div class="modal fade" id="login" role="dialog"  data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id="OpenDialog" class="modal-body">
-            </div>
-        </div>
-    </div>
-</div>

@@ -27,17 +27,9 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row">
                     <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        @if (User.IsInRole("admin"))
-                        {
-                            <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">Users</a>
-                            <a class="nav-link text-dark" asp-controller="Roles" asp-action="Index">Roles</a>
-                            <form asp-controller="Admin" asp-action="ExportUsers" method="post">
-                                <button type="submit" class="btn btn-primary">Export</button>
-                            </form>
-                        }
-                    }
+                    <a class="nav-link text-dark" asp-action="" onclick="RenderActions('/Home/AboutMe/')" data-target="#modalCreate" data-toggle="modal">About me</a>
+                    <partial name="_Modal" />
+                    <partial name="_AdminPanel" />
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <partial name="_LoginPartial" />
                     </div>

@@ -27,7 +27,7 @@ namespace LenaQuest.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            return PartialView();
         }
 
         // ПОСТ запрос принимающий и обрабатывающий модель с формы регистрации
@@ -106,7 +106,7 @@ namespace LenaQuest.Controllers
         // ПОСТ запрос обрабатывающий выход пользователя из учётной записи
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LogOff()
+        public async Task<IActionResult> Logout()
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();

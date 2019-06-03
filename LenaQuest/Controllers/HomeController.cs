@@ -26,7 +26,13 @@ namespace LenaQuestQuest.Controllers
         }
 
         // возвращает частичное представление галереи
-        public ActionResult Gallery()
+        public IActionResult Gallery()
+        {
+            return PartialView();
+        }
+
+        // возвращает частичное представление о себе
+        public IActionResult AboutMe()
         {
             return PartialView();
         }
