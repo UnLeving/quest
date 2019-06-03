@@ -11,6 +11,7 @@ namespace LenaQuest.Controllers
     /// </summary>
     public class AccountController : Controller
     {
+
         // автосвойство возвращающее апи по управлению пользователями
         private UserManager<User> _userManager { get; }
         //автосвойство возвращающее апи по управлению авторизации пользователей
@@ -69,7 +70,7 @@ namespace LenaQuest.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
-            return View(new LoginViewModel { ReturnUrl = returnUrl });
+            return PartialView(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
         // ПОСТ запрос принимающий и обрабатывающий модель с формы авторизации
