@@ -99,7 +99,7 @@ namespace LenaQuest.Controllers
                 SecondName = user.SecondName,
                 City = user.City,
                 QuestExpirience = user.QuestExpirience,
-                QuestDetails = role.Equals("admin") ? user.QuestDetails : null
+                QuestDetails = role != null && role.Equals("admin") ? user.QuestDetails : null
             };
             return View(model);
         }
