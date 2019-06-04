@@ -35,7 +35,7 @@ namespace LenaQuest.Controllers
                 return NotFound();
             }
 
-            return ExportToExcel(users, "users" + DateTime.Now.ToString());
+            return ExportToExcel(users, "users " + DateTime.Now.ToString());
         }
 
         FileStreamResult ExportToExcel(IEnumerable<User> dataSet, string fileName)

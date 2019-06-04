@@ -16,5 +16,5 @@
         </tr>
     }
 </table>
-<a asp-action="Create">Добавить роль</a>
-<a asp-action="UserList">Список пользователей</a>
+<a class="btn btn-primary" asp-action="" onclick="RenderActions('/Roles/Create/')" data-target="#modalCreate" data-toggle="modal">Добавить роль</a>
+<a class="btn btn-primary" asp-action="" onclick="RenderActions('/Roles/UserList/')" data-target="#modalCreate" data-toggle="modal">Список пользователей</a>

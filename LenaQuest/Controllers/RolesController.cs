@@ -35,7 +35,7 @@ namespace LenaQuest.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // ПОСТ запрос обрабатывающий создание роли, где name - имя роли
@@ -76,7 +76,7 @@ namespace LenaQuest.Controllers
         [HttpGet]
         public IActionResult UserList()
         {
-            return View(_userManager.Users.ToList());
+            return PartialView(_userManager.Users.ToList());
         }
 
         // ГЕТ запрос обрабатывающий изменение роли пользователя
