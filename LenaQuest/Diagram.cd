@@ -3,47 +3,40 @@
   <Class Name="LenaQuest.Controllers.AccountController">
     <Position X="0.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAAAAABAAAAAAAABAAAAAAAQAAQAAAA=</HashCode>
+      <HashCode>AAAABAAAAAAAAAAAAABAAAIAAAABAAAAAAAQAAAAAAA=</HashCode>
       <FileName>Controllers\AccountController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LenaQuest.Controllers.AdminController">
-    <Position X="3" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Controllers\AdminController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="LenaQuest.Controllers.RolesController">
-    <Position X="6.5" Y="0.5" Width="2" />
+    <Position X="6.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AACABAAAAAAAAAAAAAAAAAAgAAEAAEACAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\RolesController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LenaQuest.Controllers.UsersController">
-    <Position X="8.75" Y="0.5" Width="2" />
+    <Position X="8.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAAAAAAQAACgAAEAAAACABEAAAAAAAA=</HashCode>
+      <HashCode>AAAABAAAAAAEAAAAAAAQAACgAAEAAAACABEIAAAAAAA=</HashCode>
       <FileName>Controllers\UsersController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LenaQuestQuest.Controllers.HomeController">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAECAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABIACAAAAAAAAAECAAAAAAA=</HashCode>
       <FileName>Controllers\HomeController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LenaQuest.Models.ApplicationContext">
-    <Position X="15.5" Y="0.5" Width="1.75" />
+    <Position X="13" Y="2.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ApplicationContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LenaQuest.Models.User">
-    <Position X="11.75" Y="0.5" Width="1.5" />
+    <Position X="10.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEgAAAIAAIAIAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\User.cs</FileName>
@@ -132,11 +125,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext&lt;TUser&gt;">
-    <Position X="15.75" Y="2" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Microsoft.AspNetCore.Identity.IdentityUser">
-    <Position X="13.5" Y="0.5" Width="1.5" />
+    <Position X="13.25" Y="4.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="System.Object">

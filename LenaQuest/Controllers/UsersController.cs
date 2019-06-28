@@ -5,6 +5,10 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using LenaQuest.ViewModels;
+using System;
+using System.Collections.Generic;
+using OfficeOpenXml;
+using System.IO;
 
 namespace LenaQuest.Controllers
 {
@@ -15,13 +19,10 @@ namespace LenaQuest.Controllers
     {
         // автосвойство возвращающее апи по управлению пользователями
         private UserManager<User> _userManager { get; }
-        // автосвойство возвращающее апи по управлению административными ролями
-        private RoleManager<IdentityRole> _roleManager { get; }
-
+ 
         public UsersController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
         }
 
         // ГЕТ запрос возвращающий список пользователей
@@ -176,6 +177,29 @@ namespace LenaQuest.Controllers
                 IdentityResult result = await _userManager.DeleteAsync(user);
             }
             return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        public IActionResult ExportUsers()
+        {
+            var users = _userManager.Users;
+
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return ExportToExcel(users, "users " + DateTime.Now.ToString());
+        }
+
+        FileStreamResult ExportToExcel(IEnumerable<User> dataSet, string fileName)
+        {
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
+            workSheet.Cells[1, 1].LoadFromCollection(dataSet, true);
+
+            return File(new MemoryStream(excel.GetAsByteArray()), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName + ".xlsx");
         }
     }
 }
